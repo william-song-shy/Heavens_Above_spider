@@ -11,6 +11,6 @@ def get_url (url):
 num=input ()
 html=get_url('https://www.heavens-above.com/SatInfo.aspx?satid={}&'.format(num))
 s=BeautifulSoup(html,'html.parser')
-r=re.compile('(\S*) - 人造卫星信息')
+r=re.compile('(\S+) - 人造卫星信息')
 title=r.findall(s.title.string)
 title=title[0]
