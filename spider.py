@@ -1,5 +1,6 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
+from lxml import etree
+import html as h
 import re
 def get_url (url):
     browser = webdriver.Chrome()
@@ -10,7 +11,8 @@ def get_url (url):
 
 num=input ()
 html=get_url('https://www.heavens-above.com/SatInfo.aspx?satid={}&'.format(num))
-s=BeautifulSoup(html,'lxml')
+html=etree.HTML(html)
+title=html.xpath('//title/text()')
 r=re.compile('(\S+) - 人造卫星信息')
-title=r.findall(s.title.string)
+title=r.findall(title[0])
 title=title[0]
