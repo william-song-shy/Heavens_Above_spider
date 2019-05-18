@@ -1,6 +1,5 @@
 from selenium import webdriver
 from lxml import etree
-import html as h
 import re
 def get_url (url):
     browser = webdriver.Chrome()
@@ -16,3 +15,7 @@ title=html.xpath('//title/text()')
 r=re.compile('(\S+) - 人造卫星信息')
 title=r.findall(title[0])
 title=title[0]
+infor=html.xpath('//div[@style="width:750px"]//text()')
+infor='\n'.join(infor)
+r=re.compile(r'([^\n\t]+)')
+infor=r.findall(infor)
